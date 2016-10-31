@@ -1,0 +1,12 @@
+Directorio raiz $ bundle init: Crea Gemfile
+Abrimos el Gemfile y añadimos las gemas que usemos en nuestro poryecto
+
+        gem "rspec"
+        gem "guard"
+        gem 'guard-rspec', require: false
+Instalamos las gemas para nuestro proyecto $ bundle install
+
+bundle exec guard init rspec
+rspec --init pra crear el spec_helper.rb
+En el archivo de test correspondiente al código que vamos a testear añadimos require_relative "../app/archivo.rb" (O en el spec_helper.rb lo podemos añadir en (line 32) )
+Desde la consola lanzamos el guard
