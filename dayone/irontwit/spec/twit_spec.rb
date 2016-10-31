@@ -49,12 +49,19 @@ RSpec.describe Twit do
       expect(twit.hashtags.size).to eql(0)
     end
     
-    it "returns the correct hashtgas" do
+    it "returns the correct hashtags" do
       msg = "chicos y chicas no es chiques #feminism"
       twit = Twit.new(msg)
       expect(twit.hashtags).to include("#feminism")
     end
   end
-end
 
+  describe ".th" do
+    it "changes all the 's' with 'th'" do
+    msg = "someone so sly is not a sane person!"
+    twit = Twit.new(msg)
+    expect(twit.th).to eq("thomeone tho thly ith not a thane perthon!") 
+    end
+  end
+end
 

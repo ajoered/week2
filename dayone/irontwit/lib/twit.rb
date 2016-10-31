@@ -17,4 +17,8 @@ class Twit
   def valid?
     @msg.length < 140
   end
+
+  def th
+    @msg.gsub(/[sS]/, 'th')
+  end
 end
