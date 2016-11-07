@@ -51,8 +51,16 @@ RSpec.describe TodoList do
     it 'adds a task to the list' do
       @todo.add_task(@task_1)
       @todo.add_task(@task_2)
-        expect(@todo.tasks[0].content).to eq("Task 1")
-        expect(@todo.tasks[1].content).to eq("Task 2")
+        expect(@todo.tasks[0].contents).to eq("Task 1")
+        expect(@todo.tasks[1].contents).to eq("Task 2")
+    end
+  end
+
+  describe ".print_tasks" do 
+    it 'prints all the tasks' do
+      @todo.add_task(@task_1)
+      @todo.add_task(@task_2)
+        expect(@todo.print_tasks).to eq(["Task 1", "Task 2"])
     end
   end
 

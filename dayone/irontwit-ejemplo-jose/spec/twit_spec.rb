@@ -2,6 +2,37 @@ require 'spec_helper'
 require 'date'
 
 RSpec.describe Twit do
+
+  describe "popular" do
+    it "has more than one fav" do
+      twit = Twit.new("message")
+      twit.favs += 1
+      expect(twit.popular?).to be >= 1
+    end
+    it "has no favs" do
+      twit = Twit.new("message")
+      twit.favs = 0
+      expect(twit.popular?).to eq(0)
+    end
+  end
+
+  describe "has a image" do
+ 
+    it "returns the first image from root url" do
+    twit = Twit.new("message http://example.com/image.jpg")
+    expect(twit.get_image).to eq("image.jpg")
+    end
+
+    it "returns the first image from url with directories" do
+    twit = Twit.new("message http://example.com/directory/directory2/image.png")
+    expect(twit.get_image).to eq("image.png")
+    end    
+
+    it "has no image" do
+    twit = Twit.new("message image.jpg")
+    expect(twit.get_image).to eq(nil)
+    end
+  end
   
   describe ".status" do
     it "is visible when date is between start and end" do
@@ -27,6 +58,13 @@ RSpec.describe Twit do
       expect(twit.valid?).to eq(false)
       #expect { Twit.new(str) }.to raise_error
     end
+
+    it "Is valid under 140 and excludes images from count" do
+      str = "*" * 139
+      str.concat("http://example.com/directory/directory2/image.png")
+      twit = Twit.new(str)
+      expect(twit.valid?).to eq(true)
+    end
     
     it "is valid under 140" do
       str = "*" * 139
@@ -49,19 +87,12 @@ RSpec.describe Twit do
       expect(twit.hashtags.size).to eql(0)
     end
     
-    it "returns the correct hashtags" do
+    it "returns the correct hashtgas" do
       msg = "chicos y chicas no es chiques #feminism"
       twit = Twit.new(msg)
       expect(twit.hashtags).to include("#feminism")
     end
   end
-
-  describe ".th" do
-    it "changes all the 's' with 'th'" do
-    msg = "someone so sly is not a sane person!"
-    twit = Twit.new(msg)
-    expect(twit.th).to eq("thomeone tho thly ith not a thane perthon!") 
-    end
-  end
 end
+
 

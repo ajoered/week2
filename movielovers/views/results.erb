@@ -1,0 +1,7 @@
+<h1>Quiz time!</h1>
+<p><h2>Which movie was released in 1999?</h2></p>
+<ul>
+	<% @url.each do |url| %>
+  		<img src= <%= url %> alt="Movie" style="width:304px;height:228px;"></li>
+	<% end %>
+</ul>

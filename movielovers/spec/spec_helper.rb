@@ -3,7 +3,7 @@ require 'rspec'
 
 ENV['RACK_ENV'] = 'test'
 
-require File.expand_path '../../app.rb', __FILE__
+require File.expand_path '../../server.rb', __FILE__
 
 module RSpecMixin
   include Rack::Test::Methods
@@ -50,7 +50,8 @@ RSpec.configure do |config|
     # ...rather than:
     #     # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
-    require_relative '../lib/twit'
+    require_relative '../lib/movie'
+    require_relative '../lib/movie'
   end
 
   # rspec-mocks config goes here. You can use an alternate test double
